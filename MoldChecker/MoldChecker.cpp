@@ -40,13 +40,13 @@ int main()
 		fTemp = stof(sTemp);
 		getline(inFile, sMoist, '\n');
 		iMoist = stoi(sMoist);
-		post++;
 		cout << post << ". ";
 		cout << sDate << " " << sTime << " " << sLocation << " " << sTemp << " " << sMoist << endl;
-	/*	if (post == 10)
+		++post;
+		if (post == 10)
 		{
 			cin.get();
-		}*/
+		}
 	}
 	cout << endl << "Number of posts: " << post;
 	//while (!inFile.eof())
