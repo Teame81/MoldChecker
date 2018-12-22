@@ -1,11 +1,11 @@
 #include "pch.h"
 #include <iostream>
 #include <fstream>
-//#include <iomanip>
 #include <string>
 #include <vector>
-#include <stdio.h>
 #include <Windows.h>
+#include "Date.h"
+#include "Post.h"
 
 
 using namespace std;
@@ -14,9 +14,7 @@ int main()
 {
 	ifstream inFile;
 	int counter{};
-	vector<string>fileData;
-	fileData.reserve(600000);
-	//string SfileData[600000];
+	
 	string sDate{};
 	string sTime{};
 	string sLocation{};
@@ -26,6 +24,8 @@ int main()
 	int iMoist{};
 	int post{1};
 	const string fileName = "TempFuktData2.csv";
+
+	
 
 	inFile.open(fileName);
 	
