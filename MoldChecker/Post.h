@@ -1,11 +1,12 @@
 #pragma once
 #include "Date.h"
 
-class Post
+class Post : public Date
 {
 public:
 	Post(Date inDate, string inLocation, string inTemp, string inMoist);
-	~Post();
+	void printMe();
+	float getTemp();
 
 private:
 	Date dDate;
@@ -14,3 +15,4 @@ private:
 	int iMoist;
 
 };
+

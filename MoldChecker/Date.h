@@ -7,6 +7,10 @@ class Date
 {
 public:
 	Date(string inDate);
+	Date();
+	void printMe();
+	string sPrintMe();
+
 	
 
 private:
