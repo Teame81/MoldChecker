@@ -13,3 +13,4 @@
 
 #endif //PCH_H
 #include <iostream>
+#include <string>

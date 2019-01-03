@@ -22,3 +22,28 @@ float Post::getTemp()
 {
 	return fTemp;
 }
+
+string Post::getLocation()
+{
+	return sLocation;
+}
+
+string Post::getDate()
+{
+	return dDate.sYearMonthDay();
+}
+
+void Post::addMoist(int inMoist)
+{
+	iMoist += inMoist;
+}
+
+void Post::addTemp(float inTemp)
+{
+	fTemp += inTemp;
+}
+
+int Post::getMoist()
+{
+	return iMoist;
+}

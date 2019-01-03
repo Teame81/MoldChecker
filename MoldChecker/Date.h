@@ -10,7 +10,7 @@ public:
 	Date();
 	void printMe();
 	string sPrintMe();
-
+	string sYearMonthDay();
 	
 
 private:
