@@ -11,7 +11,14 @@ public:
 	void printAllData();
 	float fMediumTemperature();
 	void printMediumTemperature();
+	void sortInAndOut();
+	void sortOutMedium();
+
 
 private:
-	vector<Post> post;
+	vector<Post> vPost;
+	vector<Post> vIn;
+	vector<Post> vOut;
+	vector<Post> vOutMediumPerDay;
+
 };

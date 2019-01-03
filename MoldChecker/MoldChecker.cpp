@@ -44,14 +44,17 @@ int main()
 		database.addPost(post);
 		
 		++iNrOfPosts;
-		//if (iNrOfPosts == 1000000)
-		//{
-		//	break;
-		//}
+	
 	}
 	cout << endl << "Number of posts: " << iNrOfPosts;
 	cin.get();
+
+
+
 	database.printMediumTemperature();
+	cin.get();
+	database.sortInAndOut();
+	cin.get();
 
 	
 

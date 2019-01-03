@@ -12,13 +12,13 @@ PostDatabase::~PostDatabase()
 
 void PostDatabase::addPost(Post inPost)
 {
-	post.push_back(inPost);
+	vPost.push_back(inPost);
 }
 
 void PostDatabase::printAllData()
 {
 	int i = 1;
-	for (auto it = post.begin(); it != post.end(); i++, it++)
+	for (auto it = vPost.begin(); it != vPost.end(); i++, it++)
 	{
 		cout << i << ". ";
 		(*it).printMe();
@@ -29,7 +29,8 @@ float PostDatabase::fMediumTemperature()
 {
 	float fTotalTemp{};
 	int iTotalPosts{};
-	for (auto it = post.begin(); it != post.end(); iTotalPosts++, it++)
+
+	for (auto it = vPost.begin(); it != vPost.end(); iTotalPosts++, it++)
 	{
 		fTotalTemp = fTotalTemp + (*it).getTemp();
 	}
@@ -39,4 +40,45 @@ float PostDatabase::fMediumTemperature()
 void PostDatabase::printMediumTemperature()
 {
 	cout << "Medium temperature: " << this->fMediumTemperature();
+}
+
+void PostDatabase::sortInAndOut()
+{
+	for (auto it = vPost.begin(); it != vPost.end(); it++)
+	{
+		if ((*it).getLocation() == "Inne")
+		{
+			vIn.push_back((*it));
+		}
+		else if ((*it).getLocation() == "Ute")
+		{
+			vOut.push_back((*it));
+		}
+	}
+
+
+}
+
+void PostDatabase::sortOutMedium()
+{
+	Post tempPost{ vOut.at(0) };
+	
+	for (auto it = vOut.begin(); it != vOut.end();it++)
+	{
+		int iCounter{};
+		if ((*it).getDate() == (*it.operator+(1)).getDate())
+		{
+			tempPost.addMoist((*it.operator+(1)).getMoist);
+			tempPost.addTemp((*it.operator+(1)).getTemp);
+			iCounter++;
+		}
+		else if ((*it).getDate() != (*it.operator+(1)).getDate())
+		{
+			Date date{ (*it).getDate() };
+			vOutMediumPerDay.push_back(Post(date, "Ute", (tempPost.getTemp / (float)iCounter), (tempPost.getMoist / iCounter)));
+		}
+		
+		// Här är jag!!
+
+	}
 }

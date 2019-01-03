@@ -23,3 +23,12 @@ string Date::sPrintMe()
 {
 	return sFullDate;
 }
+
+string Date::sYearMonthDay()
+{
+	string YearMonthDay{};
+	
+	YearMonthDay = to_string(iYear) + to_string(iMonth) + to_string(iDay);
+	
+	return YearMonthDay;
+}
