@@ -68,17 +68,20 @@ void PostDatabase::sortOutMedium()
 		int iCounter{};
 		if ((*it).getDate() == (*it.operator+(1)).getDate())
 		{
-			tempPost.addMoist((*it.operator+(1)).getMoist);
-			tempPost.addTemp((*it.operator+(1)).getTemp);
+			tempPost.addMoist((*it.operator+(1)).getMoist());
+			tempPost.addTemp((*it.operator+(1)).getTemp());
 			iCounter++;
 		}
 		else if ((*it).getDate() != (*it.operator+(1)).getDate())
 		{
 			Date date{ (*it).getDate() };
-			vOutMediumPerDay.push_back(Post(date, "Ute", (tempPost.getTemp / (float)iCounter), (tempPost.getMoist / iCounter)));
+			float tempTemp = tempPost.getTemp() / (float)iCounter;
+			int tempMoist = tempPost.getMoist() / iCounter;
+			vOutMediumPerDay.push_back(Post(date, (string)"Ute", to_string(tempTemp), to_string(tempMoist)));
 		}
 		
-		// Här är jag!!
+		// Här är jag!! Note to self Måste updatera Post klassen att ta imot integers och float ist for Strings occh
+		// inte knvertera det i efter hand som jag gör nu. eller??
 
 	}
 }
