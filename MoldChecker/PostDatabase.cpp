@@ -62,10 +62,11 @@ void PostDatabase::sortInAndOut()
 void PostDatabase::sortOutMedium()
 {
 	Post tempPost{ vOut.at(0) };
-	
+	int iCounter{};
 	for (auto it = vOut.begin(); it != vOut.end();it++)
 	{
-		int iCounter{};
+		
+		
 		if ((*it).getDate() == (*it.operator+(1)).getDate())
 		{
 			tempPost.addMoist((*it.operator+(1)).getMoist());
@@ -74,14 +75,23 @@ void PostDatabase::sortOutMedium()
 		}
 		else if ((*it).getDate() != (*it.operator+(1)).getDate())
 		{
-			Date date{ (*it).getDate() };
-			float tempTemp = tempPost.getTemp() / (float)iCounter;
-			int tempMoist = tempPost.getMoist() / iCounter;
-			vOutMediumPerDay.push_back(Post(date, (string)"Ute", to_string(tempTemp), to_string(tempMoist)));
+		
+			vOutMediumPerDay.push_back(Post(Date((*it).getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter));
+			iCounter = 0;
+			tempPost.setMoist(0);
+			tempPost.setTemp(0.f);
 		}
 		
-		// Här är jag!! Note to self Måste updatera Post klassen att ta imot integers och float ist for Strings occh
-		// inte knvertera det i efter hand som jag gör nu. eller??
+		
+	}
+}
 
+void PostDatabase::printOut()
+{
+	int i = 1;
+	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); i++, it++)
+	{
+		cout << i << ". ";
+		(*it).printMe();
 	}
 }

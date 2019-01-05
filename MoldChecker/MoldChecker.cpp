@@ -52,8 +52,15 @@ int main()
 
 
 	database.printMediumTemperature();
+	
 	cin.get();
+	
 	database.sortInAndOut();
+	cout << "press enter to sort in OUT into days"<< endl;
+	cin.get();
+
+	database.sortOutMedium();
+	cout << "press enter to PRINT in OUT that are days" << endl;
 	cin.get();
 
 	

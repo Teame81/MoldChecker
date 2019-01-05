@@ -13,6 +13,7 @@ public:
 	void printMediumTemperature();
 	void sortInAndOut();
 	void sortOutMedium();
+	void printOut();
 
 
 private:
