@@ -46,6 +46,7 @@ void Post::addMoist(int inMoist)
 	iMoist += inMoist;
 }
 
+
 void Post::addTemp(float inTemp)
 {
 	fTemp += inTemp;

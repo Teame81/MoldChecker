@@ -66,20 +66,22 @@ void PostDatabase::sortOutMedium()
 	for (auto it = vOut.begin(); it != vOut.end();it++)
 	{
 		
-		
-		if ((*it).getDate() == (*it.operator+(1)).getDate())
+		if (it != vOut.end())
 		{
-			tempPost.addMoist((*it.operator+(1)).getMoist());
-			tempPost.addTemp((*it.operator+(1)).getTemp());
-			iCounter++;
-		}
-		else if ((*it).getDate() != (*it.operator+(1)).getDate())
-		{
+			if ((*it).getDate() == (*it.operator+(1)).getDate())
+			{
+				tempPost.addMoist((*it.operator+(1)).getMoist());
+				tempPost.addTemp((*it.operator+(1)).getTemp());
+				iCounter++;
+			}
+			else if ((*it).getDate() != (*it.operator+(1)).getDate())
+			{
 		
-			vOutMediumPerDay.push_back(Post(Date((*it).getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter));
-			iCounter = 0;
-			tempPost.setMoist(0);
-			tempPost.setTemp(0.f);
+				vOutMediumPerDay.push_back(Post(Date((*it).getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter));
+				iCounter = 0;
+				tempPost.setMoist(0);
+				tempPost.setTemp(0.f);
+			}
 		}
 		
 		
