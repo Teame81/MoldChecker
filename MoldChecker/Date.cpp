@@ -4,9 +4,9 @@
 Date::Date(string inDate)
 {
 	sFullDate = inDate;
-	iYear = (stoi(inDate.substr(0, 4)));
-	iMonth = (stoi(inDate.substr(5, 2)));
-	iDay = (stoi(inDate.substr(8, 2)));
+	//iYear = (stoi(inDate.substr(0, 4)));
+	//iMonth = (stoi(inDate.substr(5, 2)));
+	//iDay = (stoi(inDate.substr(8, 2)));
 
 }
 
@@ -30,5 +30,5 @@ string Date::sYearMonthDay()
 	
 	YearMonthDay = to_string(iYear) + to_string(iMonth) + to_string(iDay);
 	
-	return YearMonthDay;
+	return sFullDate;// Temp needs fixing
 }

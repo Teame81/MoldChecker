@@ -93,19 +93,21 @@ void PostDatabase::sortOutMedium()
 				tempPost.addTemp((it + 1)->getTemp());
 				iCounter++;
 			}
-			else if ((*it).getDate() != ((it + 1)->getDate()))
+			else if ((*it).getDate() != ((it + 1)->getDate())) //JOBBA HÄR
 			{
-				Post tP{Date("20180201"), "Ute", tempPost.getTemp(), tempPost.getMoist() };
-				//Post(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter)
-				//vOutMediumPerDay.push_back(tP);
+				if (iCounter == 0)
+				{
+					iCounter++;
+				}
+				//Post tP{Date("2016-10-01 0:00"), "Ute", tempPost.getTemp(), tempPost.getMoist() };
+				Post tP(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+				vOutMediumPerDay.push_back(tP);
 				iCounter = 0;
 				tempPost.setMoist(0);
 				tempPost.setTemp(0.f);
 			}
 			
 		}
-		this->printOutMediumPerDay();
-		
 	}
 }
 
