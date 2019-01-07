@@ -15,7 +15,8 @@ public:
 	void printInList();
 	void sortInAndOut();
 	void sortOutMedium();
-	void printOut();
+
+	void printOutMediumPerDay();
 
 
 private:

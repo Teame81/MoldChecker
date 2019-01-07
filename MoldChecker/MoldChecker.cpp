@@ -61,6 +61,7 @@ int main()
 
 	database.sortOutMedium();
 	cout << "press enter to PRINT in OUT that are days" << endl;
+	database.printOutMediumPerDay();
 	cin.get();
 
 	

@@ -85,29 +85,32 @@ void PostDatabase::sortOutMedium()
 	for (auto it = vOut.begin(); it != vOut.end();it++)
 	{
 		
-		if (it != vOut.end())
+		if (it < vOut.end()-1)
 		{
-			if ((*it).getDate() == (*it.operator+(1)).getDate())
+			if ((*it).getDate() == (it + 1)->getDate())
 			{
-				tempPost.addMoist((*it.operator+(1)).getMoist());
-				tempPost.addTemp((*it.operator+(1)).getTemp());
+				tempPost.addMoist((it + 1)->getMoist());
+				tempPost.addTemp((it + 1)->getTemp());
 				iCounter++;
 			}
-			else if ((*it).getDate() != (*it.operator+(1)).getDate())
+			else if ((*it).getDate() != ((it + 1)->getDate()))
 			{
-		
-				vOutMediumPerDay.push_back(Post(Date((*it).getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter));
+				Post tP{Date("20180201"), "Ute", tempPost.getTemp(), tempPost.getMoist() };
+				//Post(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter)
+				//vOutMediumPerDay.push_back(tP);
 				iCounter = 0;
 				tempPost.setMoist(0);
 				tempPost.setTemp(0.f);
 			}
+			
 		}
-		
+		this->printOutMediumPerDay();
 		
 	}
 }
 
-void PostDatabase::printOut()
+
+void PostDatabase::printOutMediumPerDay()
 {
 	int i = 1;
 	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); i++, it++)
