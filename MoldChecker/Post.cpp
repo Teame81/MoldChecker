@@ -10,6 +10,14 @@ Post::Post(Date inDate, string inLocation, string inTemp, string inMoist)
 	iMoist = stoi(inMoist);
 }
 
+Post::Post(Date inDate, string inLocation, float inTemp, int inMoist)
+{
+	dDate = inDate;
+	sLocation = inLocation;
+	fTemp = inTemp;
+	iMoist = inMoist;
+}
+
 void Post::printMe()
 {
 	cout << dDate.sPrintMe()
@@ -38,6 +46,7 @@ void Post::addMoist(int inMoist)
 	iMoist += inMoist;
 }
 
+
 void Post::addTemp(float inTemp)
 {
 	fTemp += inTemp;
@@ -46,4 +55,14 @@ void Post::addTemp(float inTemp)
 int Post::getMoist()
 {
 	return iMoist;
+}
+
+void Post::setTemp(float inTemp)
+{
+	fTemp = inTemp;
+}
+
+void Post::setMoist(int inMoist)
+{
+	iMoist = inMoist;
 }

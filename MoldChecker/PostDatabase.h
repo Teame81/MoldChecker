@@ -15,6 +15,7 @@ public:
 	void printInList();
 	void sortInAndOut();
 	void sortOutMedium();
+	void printOut();
 
 
 private:
