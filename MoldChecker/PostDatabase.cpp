@@ -3,7 +3,6 @@
 
 PostDatabase::PostDatabase()
 {
-	
 }
 
 PostDatabase::~PostDatabase()
@@ -40,6 +39,26 @@ float PostDatabase::fMediumTemperature()
 void PostDatabase::printMediumTemperature()
 {
 	cout << "Medium temperature: " << this->fMediumTemperature();
+}
+
+void PostDatabase::printOutList()
+{
+	int i = 1;
+	for (auto it = vOut.begin(); it != vOut.end(); i++, it++)
+	{
+		cout << i << ". ";
+		(*it).printMe();
+	}
+}
+
+void PostDatabase::printInList()
+{
+	int i = 1;
+	for (auto it = vIn.begin(); it != vIn.end(); i++, it++)
+	{
+		cout << i << ". ";
+		(*it).printMe();
+	}
 }
 
 void PostDatabase::sortInAndOut()

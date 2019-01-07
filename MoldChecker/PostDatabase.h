@@ -11,6 +11,8 @@ public:
 	void printAllData();
 	float fMediumTemperature();
 	void printMediumTemperature();
+	void printOutList();
+	void printInList();
 	void sortInAndOut();
 	void sortOutMedium();
 
