@@ -11,6 +11,9 @@ public:
 	void printMe();
 	string sPrintMe();
 	string sYearMonthDay();
+	int getYear();
+	int getMonth();
+	int getDay();
 	
 
 private:

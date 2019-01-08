@@ -81,13 +81,60 @@ void PostDatabase::sortInAndOut()
 void PostDatabase::sortOutMedium()
 {
 	Post tempPost{ vOut.at(0) };
+	
 	int iCounter{};
-	int tempCounter{};
-	int tempCounter2{};
+
 	for (auto it = vOut.begin(); it != vOut.end();it++)
 	{
 		
 		if (it < vOut.end()-1)
+		{
+			if ((*it).getDate() == (it + 1)->getDate())
+			{
+				tempPost.addMoist((it + 1)->getMoist()); //UPPGRADERING PÅ G skapa en temporär variable
+				tempPost.addTemp((it + 1)->getTemp());   // Istället för att uppgradera en hel post med add 
+				iCounter++;							     //metoden
+			}
+			else if (((*it).getDate() != ((it + 1)->getDate())))
+			{
+				if (iCounter == 0)
+				{
+					iCounter++;
+				}
+				
+				Post tP(Date((it)->getDate()), it->getLocation(), tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+				vOutMediumPerDay.push_back(tP);
+				iCounter = 0;
+				tempPost.setMoist(0);
+				tempPost.setTemp(0.f);
+			}
+			else  
+			{
+				cout <<"Not Valid" << endl;
+			}
+		}	
+		
+		if (it == vOut.end()-1)
+		{
+			if (iCounter == 0)
+			{
+				iCounter++;
+			}
+			Post tP(Date((it)->getDate()), it->getLocation(), tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+			vOutMediumPerDay.push_back(tP);
+		}
+	}
+}
+
+void PostDatabase::sortInMedium()
+{
+	Post tempPost{ vIn.at(0) };
+	int iCounter{};
+
+	for (auto it = vIn.begin(); it != vIn.end(); it++)
+	{
+
+		if (it < vIn.end() - 1)
 		{
 			if ((*it).getDate() == (it + 1)->getDate())
 			{
@@ -101,34 +148,46 @@ void PostDatabase::sortOutMedium()
 				{
 					iCounter++;
 				}
-				
-				Post tP(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
-				vOutMediumPerDay.push_back(tP);
+
+				Post tP(Date((it)->getDate()), it->getLocation(), tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+				vInMediumPerDay.push_back(tP);
 				iCounter = 0;
 				tempPost.setMoist(0);
 				tempPost.setTemp(0.f);
 			}
-			else  
+			else
 			{
-				cout << tempCounter++ << ". None Valid" << endl;
+				cout << "None Valid" << endl;
 			}
-		}	
-		
-		if (it == vOut.end()-1)
+		}
+
+		if (it == vIn.end() - 1)
 		{
 			if (iCounter == 0)
 			{
 				iCounter++;
 			}
-			Post tP(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
-			vOutMediumPerDay.push_back(tP);
+			Post tP(Date((it)->getDate()), it->getLocation(), tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+			vInMediumPerDay.push_back(tP);
 		}
+	}
+}
+
+void PostDatabase::printInMediumPerDay()
+{
+	cout << endl << "Medium per dag(Inne):" << endl;
+	int i = 1;
+	for (auto it = vInMediumPerDay.begin(); it != vInMediumPerDay.end(); i++, it++)
+	{
+		cout << i << ". ";
+		(*it).printMe();
 	}
 }
 
 
 void PostDatabase::printOutMediumPerDay()
 {
+	cout << endl << "Medium per dag(Ute):" << endl;
 	int i = 1;
 	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); i++, it++)
 	{

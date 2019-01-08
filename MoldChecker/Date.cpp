@@ -56,3 +56,18 @@ string Date::sYearMonthDay()
 
 	return YearMonthDay;
 }
+
+int Date::getYear()
+{
+	return iYear;
+}
+
+int Date::getMonth()
+{
+	return iMonth;
+}
+
+int Date::getDay()
+{
+	return iDay;
+}

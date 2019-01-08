@@ -7,14 +7,14 @@ public:
 	Post(Date inDate, string inLocation, string inTemp, string inMoist);
 	Post(Date inDate, string inLocation, float inTemp, int inMoist);
 	void printMe();
-	float getTemp();
-	string getLocation();
-	string getDate();
-	void addMoist(int inMoist);
-	void addTemp(float inTemp);
-	int getMoist();
-	void setTemp(float inTemp);
-	void setMoist(int inMoist);
+	float getTemp(); // Gets Temperature of post
+	string getLocation(); // Gets Location of post
+	string getDate(); // Gets Date of post
+	void addMoist(int inMoist); // adds Moist to a post
+	void addTemp(float inTemp); // adds Temperature to a post
+	int getMoist(); // Gets moist from post
+	void setTemp(float inTemp); // Sets temperature on a post
+	void setMoist(int inMoist); // Sets Moist on a post
 private:
 	Date dDate;
 	string sLocation;
