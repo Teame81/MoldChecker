@@ -89,32 +89,40 @@ void PostDatabase::sortOutMedium()
 		
 		if (it < vOut.end()-1)
 		{
-			//cout << "it date: " << it->getDate() << " -- it + 1 date: " << (it + 1)->getDate() << endl;
 			if ((*it).getDate() == (it + 1)->getDate())
 			{
 				tempPost.addMoist((it + 1)->getMoist());
 				tempPost.addTemp((it + 1)->getTemp());
 				iCounter++;
 			}
-			else if ((*it).getDate() != ((it + 1)->getDate())) //JOBBA HÄR
+			else if (((*it).getDate() != ((it + 1)->getDate())))
 			{
-				cout << tempCounter2++ << ". Merging" << endl;
 				if (iCounter == 0)
 				{
 					iCounter++;
 				}
-				//Post tP{Date("2016-10-01 0:00"), "Ute", tempPost.getTemp(), tempPost.getMoist() };
+				
 				Post tP(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
 				vOutMediumPerDay.push_back(tP);
 				iCounter = 0;
 				tempPost.setMoist(0);
 				tempPost.setTemp(0.f);
 			}
-			else // Must catch last date
+			else  
 			{
 				cout << tempCounter++ << ". None Valid" << endl;
 			}
-		}			
+		}	
+		
+		if (it == vOut.end()-1)
+		{
+			if (iCounter == 0)
+			{
+				iCounter++;
+			}
+			Post tP(Date((it)->getDate()), "Ute", tempPost.getTemp() / (float)iCounter, tempPost.getMoist() / iCounter);
+			vOutMediumPerDay.push_back(tP);
+		}
 	}
 }
 

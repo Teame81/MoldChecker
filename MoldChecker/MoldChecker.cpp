@@ -23,8 +23,8 @@ int main()
 	float fTemp{};
 	int iMoist{};
 	int iNrOfPosts{1};
-	const string fileName = "TempFuktData2.csv";
-
+	const string fileName = "timesaver.csv";
+	//const string fileName = "tempdata4.csv";
 	PostDatabase database{};
 
 	inFile.open(fileName);
@@ -47,6 +47,7 @@ int main()
 	
 	}
 	cout << endl << "Number of posts: " << iNrOfPosts;
+
 	cin.get();
 
 
@@ -58,6 +59,7 @@ int main()
 	database.sortInAndOut();
 	cout << "press enter to sort in OUT into days"<< endl;
 	cin.get();
+
 
 	database.sortOutMedium();
 	cout << "press enter to PRINT in OUT that are days" << endl;
