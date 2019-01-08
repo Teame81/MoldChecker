@@ -82,11 +82,14 @@ void PostDatabase::sortOutMedium()
 {
 	Post tempPost{ vOut.at(0) };
 	int iCounter{};
+	int tempCounter{};
+	int tempCounter2{};
 	for (auto it = vOut.begin(); it != vOut.end();it++)
 	{
 		
 		if (it < vOut.end()-1)
 		{
+			//cout << "it date: " << it->getDate() << " -- it + 1 date: " << (it + 1)->getDate() << endl;
 			if ((*it).getDate() == (it + 1)->getDate())
 			{
 				tempPost.addMoist((it + 1)->getMoist());
@@ -95,6 +98,7 @@ void PostDatabase::sortOutMedium()
 			}
 			else if ((*it).getDate() != ((it + 1)->getDate())) //JOBBA HÄR
 			{
+				cout << tempCounter2++ << ". Merging" << endl;
 				if (iCounter == 0)
 				{
 					iCounter++;
@@ -106,8 +110,11 @@ void PostDatabase::sortOutMedium()
 				tempPost.setMoist(0);
 				tempPost.setTemp(0.f);
 			}
-			
-		}
+			else // Must catch last date
+			{
+				cout << tempCounter++ << ". None Valid" << endl;
+			}
+		}			
 	}
 }
 
