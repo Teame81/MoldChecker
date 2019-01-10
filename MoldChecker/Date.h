@@ -14,6 +14,7 @@ public:
 	int getYear();
 	int getMonth();
 	int getDay();
+	int iGetFullDate();
 	
 
 private:

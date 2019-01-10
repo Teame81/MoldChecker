@@ -36,9 +36,14 @@ string Post::getLocation()
 	return sLocation;
 }
 
-string Post::getDate()
+string Post::sGetDate()
 {
 	return dDate.sYearMonthDay();
+}
+
+int Post::iGetDate()
+{
+	return dDate.iGetFullDate();
 }
 
 void Post::addMoist(int inMoist)

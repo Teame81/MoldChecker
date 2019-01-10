@@ -1,7 +1,6 @@
 #include "pch.h"
 
 #include <fstream>
-#include <string>
 #include <vector>
 #include <Windows.h>
 #include "Date.h"
@@ -46,27 +45,16 @@ int main()
 		++iNrOfPosts;
 	
 	}
-	cout << endl << "Number of posts: " << iNrOfPosts;
-
-	cin.get();
-
-
+	cout << "Number of posts: " << iNrOfPosts << endl;
 
 	database.printMediumTemperature();
-	
-	cin.get();
-	
 	database.sortInAndOut();
-	cout << "press enter to sort in OUT into days"<< endl;
-	cin.get();
-
-
 	database.sortOutMedium();
 	database.sortInMedium();
-	cout << "press enter to PRINT in OUT that are days" << endl;
 	database.printOutMediumPerDay();
 	database.printInMediumPerDay();
-
+	Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
+	tPost.printMe();
 	cin.get();
 
 	
