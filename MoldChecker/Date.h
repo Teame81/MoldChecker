@@ -8,13 +8,13 @@ class Date
 public:
 	Date(string inDate);
 	Date();
-	void printMe();
-	string sPrintMe();
-	string sYearMonthDay();
-	int getYear();
-	int getMonth();
-	int getDay();
-	int iGetFullDate();
+	void printMe(); //Prints date of a datepost
+	string sPrintMe(); // Returns a string of the full date
+	string sYearMonthDay(); // Returns a string with year month and day
+	int getYear(); // Gets year
+	int getMonth(); // Gets month
+	int getDay(); // Gets Day
+	int iGetFullDate(); // Gets full date in int ex: 20160615
 	
 
 private:

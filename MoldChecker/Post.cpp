@@ -8,6 +8,7 @@ Post::Post(Date inDate, string inLocation, string inTemp, string inMoist)
 	sLocation = inLocation;
 	fTemp = stof(inTemp);
 	iMoist = stoi(inMoist);
+	iMoldRisk = calculateMold(fTemp, iMoist);
 }
 
 Post::Post(Date inDate, string inLocation, float inTemp, int inMoist)
@@ -16,6 +17,14 @@ Post::Post(Date inDate, string inLocation, float inTemp, int inMoist)
 	sLocation = inLocation;
 	fTemp = inTemp;
 	iMoist = inMoist;
+	iMoldRisk = calculateMold(fTemp, iMoist);
+}
+
+float Post::calculateMold(float inTemp, int inMoist)
+{
+	float moldindex = (-0.0015 * pow(inTemp, 3)) + (0.1193 * pow(inTemp, 2)) - (2.9878 * inTemp) + 102.96;
+
+	return inMoist - moldindex;
 }
 
 void Post::printMe()
@@ -23,7 +32,8 @@ void Post::printMe()
 	cout << dDate.sPrintMe()
 		<< " " << sLocation
 		<< " " << fTemp
-		<< " " << iMoist << endl;
+		<< " " << iMoist
+		<< " " << iMoldRisk << endl;
 }
 
 float Post::getTemp()
@@ -70,4 +80,14 @@ void Post::setTemp(float inTemp)
 void Post::setMoist(int inMoist)
 {
 	iMoist = inMoist;
+}
+
+float Post::getMoldRisk()
+{
+	return iMoldRisk;
+}
+
+int Post::getMonth()
+{
+	return dDate.getMonth();
 }

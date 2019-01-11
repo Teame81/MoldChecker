@@ -273,3 +273,41 @@ void PostDatabase::sortDryToMoist(vector<Post> inVec)
 		a.printMe();
 	}
 }
+
+void PostDatabase::sortLowToHighMold(vector<Post> inVec)
+{
+	vector<Post>::iterator it = inVec.begin();
+	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	{
+		return a.getMoldRisk() < b.getMoldRisk();
+	});
+
+	int i{ 1 };
+	for (auto a : inVec)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
+}
+
+void PostDatabase::printMetrologicAutumn()
+{
+	int iCounter{}; // Här jobbar jag nu
+
+	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); it++)
+	{
+	
+		while (iCounter != 5)
+		{
+			while ((it->getTemp() > 0 && it->getTemp() <= 10) && ((it + 1)->getTemp() > 0 && (it + 1)->getTemp() <= 10))
+			{
+				iCounter++;
+
+			}
+		}
+		
+		
+		
+	}
+
+}

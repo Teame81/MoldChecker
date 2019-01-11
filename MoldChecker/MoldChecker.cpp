@@ -6,11 +6,15 @@
 #include "Date.h"
 #include "Post.h"
 #include "PostDatabase.h"
+#include <math.h>
 
 using namespace std;
 
 int main()
 {
+	int inTemp{ 15 };
+	float moldindex = (-0.0015 * pow(inTemp, 3)) + (0.1193 * pow(inTemp, 2)) - (2.9878 * inTemp) + 102.96;
+	cout << moldindex << endl;
 	ifstream inFile;
 	int counter{};
 	
@@ -57,6 +61,13 @@ int main()
 	tPost.printMe();
 	database.sortHotToCold(database.getVector("vOutMediumPerDay"));
 	database.sortDryToMoist(database.getVector("vOutMediumPerDay"));
+
+	//float moldindex{}; // WORKING ON MOLD INDEX
+	//int temp = 20;
+	//float moldindex = (-0.0015 * pow(temp, 3)) + (0.1193 * pow(temp, 2)) - (2.9878 * temp) + 102.96;
+
+
+	
 	cin.get();
 	
 	
