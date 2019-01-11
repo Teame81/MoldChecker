@@ -55,8 +55,10 @@ int main()
 	database.printInMediumPerDay();
 	Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
 	tPost.printMe();
+	database.sortHotToCold(database.getVector("vOutMediumPerDay"));
+	database.sortDryToMoist(database.getVector("vOutMediumPerDay"));
 	cin.get();
-
+	
 	
 
 }

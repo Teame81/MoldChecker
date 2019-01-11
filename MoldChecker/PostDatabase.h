@@ -18,8 +18,10 @@ public:
 	void sortInMedium(); // Fills the vInMediumPerDay vectot with the medium of all "Inne" posts
 	void printInMediumPerDay();// Prints the vInMediumPerDay list
 	void printOutMediumPerDay();// Prints the vOutMediumPerDay list
-	Post searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector
+	Post searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector string "VectorName", Integer "Date"
 	vector<Post> getVector(string inString);
+	void sortHotToCold(vector<Post> inVec);
+	void sortDryToMoist(vector<Post> inVec);
 private:
 	vector<Post> vPost;
 	vector<Post> vIn;

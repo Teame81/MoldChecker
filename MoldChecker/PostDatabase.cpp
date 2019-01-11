@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PostDatabase.h"
+#include <algorithm>
 
 PostDatabase::PostDatabase()
 {
@@ -238,4 +239,37 @@ vector<Post> PostDatabase::getVector(string inString)
 
 	if (inString == "vOutMediumPerDay")
 		return vOutMediumPerDay;
+}
+
+void PostDatabase::sortHotToCold(vector<Post> inVec)
+{
+	vector<Post>::iterator it = inVec.begin();
+	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b) 
+	{
+		return a.getTemp() > b.getTemp();
+	});
+	
+	int i{1};
+	for (auto a : inVec)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
+	
+}
+
+void PostDatabase::sortDryToMoist(vector<Post> inVec)
+{
+	vector<Post>::iterator it = inVec.begin();
+	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	{
+		return a.getMoist() < b.getMoist();
+	});
+
+	int i{ 1 };
+	for (auto a : inVec)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
 }
