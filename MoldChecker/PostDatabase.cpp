@@ -199,6 +199,7 @@ void PostDatabase::printOutMediumPerDay()
 
 Post PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 {
+	this->sortByDate(inVec);
 	int whereAt = int(inVec.size() / 2);
 	int tempMax = int(inVec.size());
 	int tempMin = 0;
@@ -312,7 +313,7 @@ void PostDatabase::printMetrologicAutumn()
 	this->sortByDate(vOutMediumPerDay);
 	int iCounter{}; 
 	int iCounterInternLoop{};
-
+	bool escape{ false };
 	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); it++)
 	{
 		iCounterInternLoop++;
@@ -325,22 +326,72 @@ void PostDatabase::printMetrologicAutumn()
 				if((it->getTemp() > 0 && it->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10.f))
 				{
 					iCounter++;
-					if (iCounter == 4)
-					{
-						cout << iCounter << "\n";
-					}
+
 				}
 				if (iCounter == 5)
 				{
 					cout << "Metrologic autumn:" << it->sPrintMe();
+					escape = true;
+					break;
 				}
+
 			}
 		
-
+		
 
 		
 			iCounter = 0;
 		}
+		if (escape)
+		{
+			break;
+		}
+
 	}
+	cout << "\n " << "There where no metrologic autumn in this data!" << "\n";
+
+}
+
+void PostDatabase::printMetrologicWinter()
+{
+	this->sortByDate(vOutMediumPerDay);
+	int iCounter{};
+	int iCounterInternLoop{};
+	bool escape{ false };
+	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); it++)
+	{
+		iCounterInternLoop++;
+		if (it < (vOutMediumPerDay.end() - 6))
+		{
+
+
+			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
+			{
+				if ((it->getTemp() < 0) && ((it2 + 1)->getTemp()))
+				{
+					iCounter++;
+
+				}
+				if (iCounter == 5)
+				{
+					cout << "Metrologic Winter:" << it->sPrintMe();
+					escape = true;
+					break;
+				}
+
+			}
+
+
+
+
+			iCounter = 0;
+		}
+		if (escape)
+		{
+			break;
+		}
+
+	}
+	cout << "\n " << "There where no metrologic winter in this data!" << "\n";
 
 }

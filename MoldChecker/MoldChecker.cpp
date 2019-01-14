@@ -66,6 +66,7 @@ int main()
 	//int temp = 20;
 	//float moldindex = (-0.0015 * pow(temp, 3)) + (0.1193 * pow(temp, 2)) - (2.9878 * temp) + 102.96;
 	database.printMetrologicAutumn();
+	database.printMetrologicWinter();
 
 	
 	cin.get();

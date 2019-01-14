@@ -24,7 +24,8 @@ public:
 	void sortDryToMoist(vector<Post> inVec); // Send in a vector to sort it from dry to moist
 	void sortLowToHighMold(vector<Post> inVec); // Send in a vector to sort it from low to high mold risk
 	void sortByDate(vector<Post> inVec);//Send in a vector sort it by date
-	void printMetrologicAutumn(); // 
+	void printMetrologicAutumn(); //Prints wich day metrologic autumn starts
+	void printMetrologicWinter();//Prints wich day metroligic autumn starts
 private:
 	vector<Post> vPost;
 	vector<Post> vIn;
