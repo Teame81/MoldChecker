@@ -290,26 +290,49 @@ void PostDatabase::sortLowToHighMold(vector<Post> inVec)
 	}
 }
 
+void PostDatabase::sortByDate(vector<Post> inVec)
+{
+	vector<Post>::iterator it = inVec.begin();
+	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	{
+		return a.iGetDate() < b.iGetDate();
+	});
+
+	int i{ 1 };
+	for (auto a : inVec)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
+}
+
+
 void PostDatabase::printMetrologicAutumn()
 {
-	int iCounter{}; // Här jobbar jag nu
+	this->sortByDate(vOutMediumPerDay);
+	int iCounter{}; 
 	int iCounterInternLoop{};
+
 	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); it++)
 	{
 		iCounterInternLoop++;
-		if (it->getMonth() > 8 && it < (vOutMediumPerDay.end()-6))
+		if (it->getMonth() >= 8 && it < (vOutMediumPerDay.end()-6))
 		{
 
 
 			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
 			{
-				if((it2->getTemp() > 0 && it2->getTemp() <= 10) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10))
+				if((it2->getTemp() > 0 && it2->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10))
 				{
 					iCounter++;
+					if (iCounter == 4)
+					{
+						cout << iCounter << "\n";
+					}
 				}
 			}
 		
-			if (iCounter == 0)
+			if (iCounter == 5)
 			{
 				cout << "Metrologic autumn:" << it->sPrintMe();
 			}

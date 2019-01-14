@@ -23,6 +23,7 @@ public:
 	void sortHotToCold(vector<Post> inVec); // Send in a vector to sort it in temperature order
 	void sortDryToMoist(vector<Post> inVec); // Send in a vector to sort it from dry to moist
 	void sortLowToHighMold(vector<Post> inVec); // Send in a vector to sort it from low to high mold risk
+	void sortByDate(vector<Post> inVec);//Send in a vector sort it by date
 	void printMetrologicAutumn(); // 
 private:
 	vector<Post> vPost;
