@@ -293,21 +293,30 @@ void PostDatabase::sortLowToHighMold(vector<Post> inVec)
 void PostDatabase::printMetrologicAutumn()
 {
 	int iCounter{}; // Här jobbar jag nu
-
+	int iCounterInternLoop{};
 	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); it++)
 	{
-	
-		while (iCounter != 5)
+		iCounterInternLoop++;
+		if (it->getMonth() > 8 && it < (vOutMediumPerDay.end()-6))
 		{
-			while ((it->getTemp() > 0 && it->getTemp() <= 10) && ((it + 1)->getTemp() > 0 && (it + 1)->getTemp() <= 10))
-			{
-				iCounter++;
 
+
+			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
+			{
+				if((it2->getTemp() > 0 && it2->getTemp() <= 10) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10))
+				{
+					iCounter++;
+				}
 			}
+		
+			if (iCounter == 0)
+			{
+				cout << "Metrologic autumn:" << it->sPrintMe();
+			}
+
+		
+			iCounter = 0;
 		}
-		
-		
-		
 	}
 
 }

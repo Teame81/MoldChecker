@@ -8,6 +8,7 @@ public:
 	Post(Date inDate, string inLocation, float inTemp, int inMoist);//Contructor used when merging the days
 	float calculateMold(float inTemp, int inMoist);//
 	void printMe(); // Prints the data in a post
+	string sPrintMe(); //Returns the data in a post like a string
 	float getTemp(); // Gets Temperature of post
 	string getLocation(); // Gets Location of post
 	string sGetDate(); // Gets string Date of post

@@ -26,8 +26,8 @@ int main()
 	float fTemp{};
 	int iMoist{};
 	int iNrOfPosts{1};
-	const string fileName = "timesaver.csv";
-	//const string fileName = "tempdata4.csv";
+	//const string fileName = "timesaver.csv";
+	const string fileName = "tempdata4.csv";
 	PostDatabase database{};
 
 	inFile.open(fileName);
@@ -65,7 +65,7 @@ int main()
 	//float moldindex{}; // WORKING ON MOLD INDEX
 	//int temp = 20;
 	//float moldindex = (-0.0015 * pow(temp, 3)) + (0.1193 * pow(temp, 2)) - (2.9878 * temp) + 102.96;
-
+	database.printMetrologicAutumn();
 
 	
 	cin.get();

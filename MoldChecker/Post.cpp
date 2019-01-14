@@ -33,7 +33,12 @@ void Post::printMe()
 		<< " " << sLocation
 		<< " " << fTemp
 		<< " " << iMoist
-		<< " " << iMoldRisk << endl;
+		<< " " << iMoldRisk << "\n";
+}
+
+string Post::sPrintMe()
+{
+	return dDate.sPrintMe() + " " + sLocation + " " + to_string(fTemp) + " " + to_string(iMoist)+ " " + to_string(iMoldRisk) + "\n";
 }
 
 float Post::getTemp()
