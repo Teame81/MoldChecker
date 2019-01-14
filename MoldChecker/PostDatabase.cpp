@@ -322,7 +322,7 @@ void PostDatabase::printMetrologicAutumn()
 
 			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
 			{
-				if((it2->getTemp() > 0 && it2->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10))
+				if((it->getTemp() > 0 && it->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10.f))
 				{
 					iCounter++;
 					if (iCounter == 4)
@@ -330,12 +330,13 @@ void PostDatabase::printMetrologicAutumn()
 						cout << iCounter << "\n";
 					}
 				}
+				if (iCounter == 5)
+				{
+					cout << "Metrologic autumn:" << it->sPrintMe();
+				}
 			}
 		
-			if (iCounter == 5)
-			{
-				cout << "Metrologic autumn:" << it->sPrintMe();
-			}
+
 
 		
 			iCounter = 0;
