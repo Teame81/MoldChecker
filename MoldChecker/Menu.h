@@ -10,6 +10,7 @@ public:
 	
 	void mainMenu(PostDatabase &mDatabase);
 	void outDoorMenu(PostDatabase &mDatabase);
+	void inDoorMenu(PostDatabase &mDatabase);
 
 	char menuInput();
 

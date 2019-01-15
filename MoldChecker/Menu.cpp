@@ -36,7 +36,7 @@ void Menu::mainMenu(PostDatabase &mDatabase)
 			break;
 			case '2':
 			{
-				cout << "2\n";
+				inDoorMenu(mDatabase);
 
 
 			}
@@ -76,6 +76,7 @@ void Menu::outDoorMenu(PostDatabase & mDatabase)
 		cout << "1. Warmest to coldest day.\n";
 		cout << "2. Driest to most moist day.\n";
 		cout << "3. Least risk to highest mold risk.\n";
+		cout << "4. Search for a specific day.\n";
 		cout << "Q. Back.\n";
 
 		switch (menuInput())
@@ -95,7 +96,61 @@ void Menu::outDoorMenu(PostDatabase & mDatabase)
 		case '3':
 		{
 			mDatabase.sortLowToHighMold();
+			mDatabase.printOutList();
+		}
+		break;
+		case '4':
+		{
+			cout << "Search";
+		}
+		break;
+		case 'Q':
+		{
+			loop = false;
+		}
+		break;
+		default:
+			break;
+		}
+	}
+}
+
+void Menu::inDoorMenu(PostDatabase & mDatabase)
+{
+	bool loop = true;
+
+	while (loop)
+	{
+		cout << "\n---------INDOOR MENU---------\n";
+		cout << "1. Warmest to coldest day.\n";
+		cout << "2. Driest to most moist day.\n";
+		cout << "3. Least risk to highest mold risk.\n";
+		cout << "4. Search for a specific day.\n";
+		cout << "Q. Back.\n";
+
+		switch (menuInput())
+		{
+		case '1':
+		{
+			mDatabase.sortByTemperature();
 			mDatabase.printInList();
+		}
+		break;
+		case '2':
+		{
+			mDatabase.sortDryToMoist();
+			mDatabase.printInList();
+		}
+		break;
+		case '3':
+		{
+			mDatabase.sortLowToHighMold();
+			mDatabase.printInList();
+		}
+		break;
+		case '4':
+		{
+			cout << "Search";
 		}
 		break;
 		case 'Q':
