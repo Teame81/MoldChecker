@@ -3,26 +3,29 @@
 #include <fstream>
 #include <vector>
 #include <Windows.h>
+
+#include "Menu.h"
+#include "PostDatabase.h"
 #include "Date.h"
 #include "Post.h"
-#include "PostDatabase.h"
 #include <math.h>
 
-using namespace std;
 void readFileData(const string fileName);
 PostDatabase database;
+Menu menu;
 
 int main()
 {
 
-
+	
 	readFileData("tempdata4.csv");
 	//readFileData("timesaver.csv");
 
 	database.printMediumTemperature();
 	
 	database.loadEssentials();
-	//MENU LOOP starts here
+
+	menu.mainMenu(database);
 
 	//Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
 	//tPost.printMe();
@@ -30,9 +33,6 @@ int main()
 	//database.sortDryToMoist(database.getVector("vOutMediumPerDay"));
 	
 
-	database.sortDryToMoist();
-	database.printOutList();
-	database.printInList();
 
 	cin.get();
 	

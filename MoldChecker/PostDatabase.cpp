@@ -328,26 +328,23 @@ void PostDatabase::printMetrologicAutumn()
 		{
 
 
-			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
+			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 4)); it2++)
 			{
-				if((it->getTemp() > 0 && it->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10.f))
+				if((it2->getTemp() > 0 && it2->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10.f))
 				{
 					iCounter++;
 
 				}
 				if (iCounter == 5)
 				{
-					cout << "Metrologic autumn:" << it->sPrintMe();
+					cout << "Metrologic autumn: " << it->sPrintMe();
 					escape = true;
 					break;
 				}
 
 			}
-		
-		
-
-		
-			iCounter = 0;
+			
+		iCounter = 0;
 		}
 		if (escape)
 		{
@@ -355,7 +352,10 @@ void PostDatabase::printMetrologicAutumn()
 		}
 
 	}
-	cout << "\n " << "There where no metrologic autumn in this data!" << "\n";
+	if (!escape)
+	{
+		cout << "\nThere where no metrologic autumn in this data!" << "\n";
+	}
 
 }
 
@@ -369,11 +369,9 @@ void PostDatabase::printMetrologicWinter()
 		iCounterInternLoop++;
 		if (it < (vOutMediumPerDay.end() - 6))
 		{
-
-
-			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 5)); it2++)
+			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 4)); it2++)
 			{
-				if ((it->getTemp() < 0) && ((it2 + 1)->getTemp()))
+				if ((it2->getTemp() < 0) && ((it2 + 1)->getTemp()))
 				{
 					iCounter++;
 
@@ -386,18 +384,15 @@ void PostDatabase::printMetrologicWinter()
 				}
 
 			}
-
-
-
-
 			iCounter = 0;
 		}
 		if (escape)
 		{
 			break;
 		}
-
 	}
-	cout << "\n " << "There where no metrologic winter in this data!" << "\n";
-
+	if (!escape)
+	{
+		cout << "\nThere where no metrologic winter in this data!" << "\n";
+	}
 }

@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Post.h" />
     <ClInclude Include="PostDatabase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MoldChecker.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
