@@ -33,7 +33,8 @@ void Post::printMe()
 		<< " " << sLocation
 		<< " " << fTemp
 		<< " " << iMoist
-		<< " " << iMoldRisk << "\n";
+		<< " " << iMoldRisk 
+		<< " " << fTempDiff << "\n";
 }
 
 string Post::sPrintMe()
@@ -95,4 +96,14 @@ float Post::getMoldRisk()
 int Post::getMonth()
 {
 	return dDate.getMonth();
+}
+
+void Post::setTempDiff(float InDiff)
+{
+	fTempDiff = InDiff;
+}
+
+float Post::getTempDiff()
+{
+	return fTempDiff;
 }

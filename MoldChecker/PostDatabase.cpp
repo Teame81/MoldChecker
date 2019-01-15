@@ -10,6 +10,15 @@ PostDatabase::~PostDatabase()
 {
 }
 
+void PostDatabase::loadEssentials()
+{
+	cout << "Sorting vectors!\n";
+	this->sortInAndOut();
+	this->sortOutMedium();
+	this->sortInMedium();
+	this->setTempDiff();
+}
+
 void PostDatabase::addPost(Post inPost)
 {
 	vPost.push_back(inPost);
@@ -39,7 +48,7 @@ float PostDatabase::fMediumTemperature()
 
 void PostDatabase::printMediumTemperature()
 {
-	cout << "Medium temperature: " << this->fMediumTemperature();
+	cout << "Medium temperature for the whole list: " << this->fMediumTemperature() << "\n";
 }
 
 void PostDatabase::printOutList()
@@ -174,6 +183,21 @@ void PostDatabase::sortInMedium()
 	}
 }
 
+void PostDatabase::setTempDiff()
+{
+	float diff{};
+	for (vector<Post>::iterator itIn = vInMediumPerDay.begin(), itOut = vOutMediumPerDay.begin(); itIn != vInMediumPerDay.end() || itOut != vOutMediumPerDay.end(); itIn++, itOut++)
+	{
+		diff = itIn->getTemp() - itOut->getTemp();
+		if (diff < 0)
+			diff = (-diff);//If negative diffrance make it positive
+		itIn->setTempDiff(diff);
+		itOut->setTempDiff(diff);
+
+	}
+
+}
+
 void PostDatabase::printInMediumPerDay()
 {
 	cout << endl << "Medium per dag(Inne):" << endl;
@@ -244,7 +268,7 @@ vector<Post> PostDatabase::getVector(string inString)
 
 void PostDatabase::sortHotToCold(vector<Post> inVec)
 {
-	vector<Post>::iterator it = inVec.begin();
+	
 	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b) 
 	{
 		return a.getTemp() > b.getTemp();
@@ -261,7 +285,7 @@ void PostDatabase::sortHotToCold(vector<Post> inVec)
 
 void PostDatabase::sortDryToMoist(vector<Post> inVec)
 {
-	vector<Post>::iterator it = inVec.begin();
+	
 	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
 	{
 		return a.getMoist() < b.getMoist();
@@ -277,7 +301,7 @@ void PostDatabase::sortDryToMoist(vector<Post> inVec)
 
 void PostDatabase::sortLowToHighMold(vector<Post> inVec)
 {
-	vector<Post>::iterator it = inVec.begin();
+	
 	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
 	{
 		return a.getMoldRisk() < b.getMoldRisk();
@@ -293,7 +317,7 @@ void PostDatabase::sortLowToHighMold(vector<Post> inVec)
 
 void PostDatabase::sortByDate(vector<Post> inVec)
 {
-	vector<Post>::iterator it = inVec.begin();
+	
 	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
 	{
 		return a.iGetDate() < b.iGetDate();
@@ -305,6 +329,35 @@ void PostDatabase::sortByDate(vector<Post> inVec)
 		cout << i++ << ": ";
 		a.printMe();
 	}
+}
+
+void PostDatabase::sortByTempDiffHighToLow()
+{
+	//Sort indoor vector
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](Post & a, Post & b)
+	{
+		return a.getTempDiff() > b.getTempDiff();
+	});
+	int i{ 1 };
+	cout << "\n Indoors medium per day list sorted by temperature difference: \n";
+	for (auto a : vInMediumPerDay)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
+	//Sort outdoor vector
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](Post & a, Post & b)
+	{
+		return a.getTempDiff() > b.getTempDiff();
+	});
+	i = 1;
+	cout << "\n Outdoors medium per day list sorted by temperature difference: \n";
+	for (auto a : vInMediumPerDay)
+	{
+		cout << i++ << ": ";
+		a.printMe();
+	}
+
 }
 
 

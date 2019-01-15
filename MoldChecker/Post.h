@@ -19,13 +19,16 @@ public:
 	void setTemp(float inTemp); // Sets temperature on a post
 	void setMoist(int inMoist); // Sets Moist on a post
 	float getMoldRisk(); // Gets the mold risk
-	int getMonth();
+	int getMonth(); // Returns month in Int
+	void setTempDiff(float inDiff); // Sets the temperature difference
+	float getTempDiff(); //Gets temperature difference
 
 private:
 	Date dDate;
-	string sLocation;
-	float fTemp;
-	int iMoist;
-	float iMoldRisk;
+	string sLocation{};
+	float fTemp{};
+	int iMoist{};
+	float iMoldRisk{};
+	float fTempDiff{};
 
 };
