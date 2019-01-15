@@ -13,16 +13,16 @@ public:
 	float fMediumTemperature(); // returns medium temperature of main vector(vPost)
 	void printMediumTemperature(); // prints medium temperature of main vector(vPost)
 	void printOutList(); //Prints all objects of the "out" vector(vOut)
-	void printInList(); // Prints alla the objects of the "in" vector(vIn)
-	void printInMediumPerDay(); // Prints the vInMediumPerDay list
-	void printOutMediumPerDay(); // Prints the vOutMediumPerDay list
+	void printInList(); // Prints all the objects of the "in" vector(vIn)
+	
+	void sortLowToHighMold(); // Send in a vector to sort it from low to high mold risk
+	void sortByDate();//Send in a vector sort it by date
+	void sortByTempDiffHighToLow();//Sorts vOut/In_Medium per days vectors in Temprature diffrent order
+	void sortDryToMoist(); // Send in a vector to sort it from dry to moist
+	void sortByTemperature(); //Sort a vector by temperature
+	
 	Post searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector string "VectorName", Integer "Date"
 	vector<Post> getVector(string inString); //Getter for vectors
-	void sortHotToCold(vector<Post> inVec); // Send in a vector to sort it in temperature order
-	void sortDryToMoist(vector<Post> inVec); // Send in a vector to sort it from dry to moist
-	void sortLowToHighMold(vector<Post> inVec); // Send in a vector to sort it from low to high mold risk
-	void sortByDate(vector<Post> inVec);//Send in a vector sort it by date
-	void sortByTempDiffHighToLow();//Sorts vOut/IN_Mediumper days vectors in Temprature diffrent order
 	void printMetrologicAutumn(); //Prints wich day metrologic autumn starts
 	void printMetrologicWinter();//Prints wich day metroligic autumn starts
 	

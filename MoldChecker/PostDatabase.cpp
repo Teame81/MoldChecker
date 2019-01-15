@@ -54,20 +54,24 @@ void PostDatabase::printMediumTemperature()
 void PostDatabase::printOutList()
 {
 	int i = 1;
-	for (auto it = vOut.begin(); it != vOut.end(); i++, it++)
+	auto it = vOutMediumPerDay.begin();
+	auto itR = vOutMediumPerDay.rbegin();
+
+	for (it, itR; it != vOutMediumPerDay.begin() + 5 || itR != vOutMediumPerDay.rbegin() + 5; i++, itR++, it++)
 	{
-		cout << i << ". ";
-		(*it).printMe();
+		cout << i << ". High: " << it->sPrintMe() << "\t Low: " << itR->sPrintMe() << "\n";
 	}
 }
 
 void PostDatabase::printInList()
 {
 	int i = 1;
-	for (auto it = vIn.begin(); it != vIn.end(); i++, it++)
+	auto it = vInMediumPerDay.begin();
+	auto itR = vInMediumPerDay.rbegin();
+
+	for (it, itR; it != vInMediumPerDay.begin() + 5 || itR != vInMediumPerDay.rbegin() + 5; i++, itR++, it++)
 	{
-		cout << i << ". ";
-		(*it).printMe();
+		cout << i << ". High: " << it->sPrintMe() << "\t Low: " << itR->sPrintMe() << "\n";
 	}
 }
 
@@ -190,7 +194,8 @@ void PostDatabase::setTempDiff()
 	{
 		diff = itIn->getTemp() - itOut->getTemp();
 		if (diff < 0)
-			diff = (-diff);//If negative diffrance make it positive
+			diff = (-diff);//If negative diffrence make it positive
+		
 		itIn->setTempDiff(diff);
 		itOut->setTempDiff(diff);
 
@@ -198,32 +203,10 @@ void PostDatabase::setTempDiff()
 
 }
 
-void PostDatabase::printInMediumPerDay()
-{
-	cout << endl << "Medium per dag(Inne):" << endl;
-	int i = 1;
-	for (auto it = vInMediumPerDay.begin(); it != vInMediumPerDay.end(); i++, it++)
-	{
-		cout << i << ". ";
-		(*it).printMe();
-	}
-}
 
-
-void PostDatabase::printOutMediumPerDay()
-{
-	cout << endl << "Medium per dag(Ute):" << endl;
-	int i = 1;
-	for (auto it = vOutMediumPerDay.begin(); it != vOutMediumPerDay.end(); i++, it++)
-	{
-		cout << i << ". ";
-		(*it).printMe();
-	}
-}
 
 Post PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 {
-	this->sortByDate(inVec);
 	int whereAt = int(inVec.size() / 2);
 	int tempMax = int(inVec.size());
 	int tempMin = 0;
@@ -266,69 +249,54 @@ vector<Post> PostDatabase::getVector(string inString)
 		return vOutMediumPerDay;
 }
 
-void PostDatabase::sortHotToCold(vector<Post> inVec)
+void PostDatabase::sortDryToMoist()
 {
-	
-	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b) 
-	{
-		return a.getTemp() > b.getTemp();
-	});
-	
-	int i{1};
-	for (auto a : inVec)
-	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
-	
-}
-
-void PostDatabase::sortDryToMoist(vector<Post> inVec)
-{
-	
-	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](const Post & a, const Post & b)
 	{
 		return a.getMoist() < b.getMoist();
 	});
-
-	int i{ 1 };
-	for (auto a : inVec)
+	sort(vOutMediumPerDay.begin(), vOutMediumPerDay.end(), [](const Post & a, const Post & b)
 	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
+		return a.getMoist() < b.getMoist();
+	});
 }
 
-void PostDatabase::sortLowToHighMold(vector<Post> inVec)
+void PostDatabase::sortLowToHighMold()
 {
-	
-	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](const Post & a, const Post & b)
 	{
 		return a.getMoldRisk() < b.getMoldRisk();
 	});
-
-	int i{ 1 };
-	for (auto a : inVec)
+	sort(vOutMediumPerDay.begin(), vOutMediumPerDay.end(), [](const Post & a, const Post & b)
 	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
+		return a.getMoldRisk() < b.getMoldRisk();
+	});
 }
 
-void PostDatabase::sortByDate(vector<Post> inVec)
+void PostDatabase::sortByDate()
 {
-	
-	sort(inVec.begin(), inVec.end(), [](Post & a, Post & b)
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](Post & a, Post & b)
+	{
+		return a.iGetDate() < b.iGetDate();
+	});
+	sort(vOutMediumPerDay.begin(), vOutMediumPerDay.end(), [](Post & a, Post & b)
 	{
 		return a.iGetDate() < b.iGetDate();
 	});
 
-	int i{ 1 };
-	for (auto a : inVec)
+}
+
+void PostDatabase::sortByTemperature()
+{
+	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](const Post &a,Post &b)
 	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
+		return a.getTemp() > b.getTemp();
+	});
+
+	sort(vOutMediumPerDay.begin(), vOutMediumPerDay.end(), [](const Post &a, const Post &b)
+	{
+		return a.getTemp() > b.getTemp();
+	});
 }
 
 void PostDatabase::sortByTempDiffHighToLow()
@@ -338,32 +306,18 @@ void PostDatabase::sortByTempDiffHighToLow()
 	{
 		return a.getTempDiff() > b.getTempDiff();
 	});
-	int i{ 1 };
-	cout << "\n Indoors medium per day list sorted by temperature difference: \n";
-	for (auto a : vInMediumPerDay)
-	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
 	//Sort outdoor vector
-	sort(vInMediumPerDay.begin(), vInMediumPerDay.end(), [](Post & a, Post & b)
+	sort(vOutMediumPerDay.begin(), vOutMediumPerDay.end(), [](Post & a, Post & b)
 	{
 		return a.getTempDiff() > b.getTempDiff();
 	});
-	i = 1;
-	cout << "\n Outdoors medium per day list sorted by temperature difference: \n";
-	for (auto a : vInMediumPerDay)
-	{
-		cout << i++ << ": ";
-		a.printMe();
-	}
+
 
 }
 
 
 void PostDatabase::printMetrologicAutumn()
 {
-	this->sortByDate(vOutMediumPerDay);
 	int iCounter{}; 
 	int iCounterInternLoop{};
 	bool escape{ false };
@@ -407,7 +361,6 @@ void PostDatabase::printMetrologicAutumn()
 
 void PostDatabase::printMetrologicWinter()
 {
-	this->sortByDate(vOutMediumPerDay);
 	int iCounter{};
 	int iCounterInternLoop{};
 	bool escape{ false };

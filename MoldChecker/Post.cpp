@@ -39,12 +39,12 @@ void Post::printMe()
 
 string Post::sPrintMe()
 {
-	return dDate.sPrintMe() + " " + sLocation + " " + to_string(fTemp) + " " + to_string(iMoist)+ " " + to_string(iMoldRisk) + "\n";
+	return dDate.sPrintMe() + " " + sLocation + " " + to_string(fTemp) + " " + to_string(iMoist)+ " " + to_string(iMoldRisk) + " " + to_string(fTempDiff);
 }
 
-float Post::getTemp()
+float Post::getTemp()const
 {
-	return fTemp;
+	return this->fTemp;
 }
 
 string Post::getLocation()
@@ -73,7 +73,7 @@ void Post::addTemp(float inTemp)
 	fTemp += inTemp;
 }
 
-int Post::getMoist()
+int Post::getMoist()const
 {
 	return iMoist;
 }
@@ -88,7 +88,7 @@ void Post::setMoist(int inMoist)
 	iMoist = inMoist;
 }
 
-float Post::getMoldRisk()
+float Post::getMoldRisk()const
 {
 	return iMoldRisk;
 }

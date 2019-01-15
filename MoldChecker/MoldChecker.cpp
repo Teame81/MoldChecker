@@ -24,16 +24,16 @@ int main()
 	database.loadEssentials();
 	//MENU LOOP starts here
 
-	Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
-	tPost.printMe();
+	//Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
+	//tPost.printMe();
 	//database.sortHotToCold(database.getVector("vOutMediumPerDay"));
 	//database.sortDryToMoist(database.getVector("vOutMediumPerDay"));
-
-	database.printMetrologicAutumn();
-	database.printMetrologicWinter();
 	
 
-	database.sortByTempDiffHighToLow();
+	database.sortDryToMoist();
+	database.printOutList();
+	database.printInList();
+
 	cin.get();
 	
 	
