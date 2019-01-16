@@ -21,11 +21,12 @@ public:
 	void sortDryToMoist(); // Send in a vector to sort it from dry to moist
 	void sortByTemperature(); //Sort a vector by temperature
 	
-	Post searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector string "VectorName", Integer "Date"
+	void searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector string "VectorName", Integer "Date"
 	vector<Post> getVector(string inString); //Getter for vectors
 	void printMetrologicAutumn(); //Prints wich day metrologic autumn starts
 	void printMetrologicWinter();//Prints wich day metroligic autumn starts
-	
+	vector<Post> getOutVector();
+
 private:
 	void sortInAndOut(); // Sort out "Inne" / "Ute" into vIn vector and vOut vector
 	void sortOutMedium(); // Fills the vOutMediumPerDay vector with the medium of all "Ute" posts

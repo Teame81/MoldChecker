@@ -23,6 +23,7 @@ public:
 	void setTempDiff(float inDiff); // Sets the temperature difference
 	float getTempDiff(); //Gets temperature difference
 
+
 private:
 	Date dDate;
 	string sLocation{};

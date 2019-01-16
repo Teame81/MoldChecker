@@ -205,48 +205,58 @@ void PostDatabase::setTempDiff()
 
 
 
-Post PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
+void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 {
 	int whereAt = int(inVec.size() / 2);
 	int tempMax = int(inVec.size());
 	int tempMin = 0;
-	
 	vector<Post>::iterator it = inVec.begin() + whereAt;
-	int tempInt = it->iGetDate();
-	while (inInt != it->iGetDate())
+	vector<Post>::iterator itCB = inVec.begin();
+	vector<Post>::iterator itCE = inVec.end()-1;
+	bool didFind{false};
+	if (inInt >= itCB->iGetDate() && inInt <= itCE->iGetDate())
 	{
-		if (inInt < it->iGetDate())
+		int tempInt = it->iGetDate();
+		while (inInt != it->iGetDate())
 		{
-			tempMax = whereAt - 1;
-			whereAt = tempMin + (tempMax - tempMin) / 2;
-			it = inVec.begin() + whereAt;
+			if (inInt < it->iGetDate())
+			{
+				tempMax = whereAt - 1;
+				whereAt = tempMin + (tempMax - tempMin) / 2;
+				it = inVec.begin() + whereAt;
+			}
+			else
+			{
+				tempMin = whereAt+1;
+				whereAt = tempMin + (tempMax - tempMin) / 2;
+				it = inVec.begin() + whereAt;
+			}
 		}
-		else
-		{
-			tempMin = whereAt;
-			whereAt = tempMin + (tempMax - tempMin) / 2;
-			it = inVec.begin() + whereAt;
-		}
+		it->printMe();
+		didFind = true;
 	}
-	return (*it);
+	if (didFind == false)
+	{
+		cout << "Date out of bounds\n";
+	}
 }
 
 vector<Post> PostDatabase::getVector(string inString)
 {
 	if(inString == "vPost")
-		return vPost;
+		return this->vPost;
 
 	if (inString == "vIn")
-		return vIn;
+		return this->vIn;
 
 	if (inString == "vInMediumPerDay")
-		return vInMediumPerDay;
+		return this->vInMediumPerDay;
 
 	if (inString == "vOut")
-		return vOut;
+		return this->vOut;
 
 	if (inString == "vOutMediumPerDay")
-		return vOutMediumPerDay;
+		return this->vOutMediumPerDay;
 }
 
 void PostDatabase::sortDryToMoist()
@@ -395,4 +405,9 @@ void PostDatabase::printMetrologicWinter()
 	{
 		cout << "\nThere where no metrologic winter in this data!" << "\n";
 	}
+}
+
+vector<Post> PostDatabase::getOutVector()
+{
+	return vOutMediumPerDay;
 }
