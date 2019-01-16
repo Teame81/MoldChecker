@@ -54,6 +54,7 @@ void Menu::mainMenu(PostDatabase &mDatabase)
 				mDatabase.printMetrologicWinter();
 
 			}
+			break;
 			case '5':
 			{
 				mDatabase.sortByTempDiffHighToLow();
