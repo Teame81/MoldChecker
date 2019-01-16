@@ -75,6 +75,18 @@ void PostDatabase::printInList()
 	}
 }
 
+void PostDatabase::printTempDiffList()
+{
+	int i = 1;
+	auto it = vInMediumPerDay.begin();
+	auto itR = vInMediumPerDay.rbegin();
+
+	for (it, itR; it != vInMediumPerDay.begin() + 5 || itR != vInMediumPerDay.rbegin() + 5; i++, itR++, it++)
+	{
+		cout << i << ". High: " << it->printMeNoLocation() << "\t Low: " << itR->printMeNoLocation() << "\n";
+	}
+}
+
 void PostDatabase::sortInAndOut()
 {
 	for (auto it = vPost.begin(); it != vPost.end(); it++)
@@ -201,6 +213,11 @@ void PostDatabase::setTempDiff()
 
 	}
 
+}
+
+void PostDatabase::vInTempDiffPerHour()
+{
+	cout << "Aik";
 }
 
 

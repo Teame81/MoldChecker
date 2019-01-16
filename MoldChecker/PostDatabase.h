@@ -14,6 +14,7 @@ public:
 	void printMediumTemperature(); // prints medium temperature of main vector(vPost)
 	void printOutList(); //Prints all objects of the "out" vector(vOut)
 	void printInList(); // Prints all the objects of the "in" vector(vIn)
+	void printTempDiffList();//Prints all list without Location
 	
 	void sortLowToHighMold(); // Send in a vector to sort it from low to high mold risk
 	void sortByDate();//Send in a vector sort it by date
@@ -21,6 +22,7 @@ public:
 	void sortDryToMoist(); // Send in a vector to sort it from dry to moist
 	void sortByTemperature(); //Sort a vector by temperature
 	
+
 	void searchForDateInPostVector(vector<Post> inVec, int inInt);//Search in a vector string "VectorName", Integer "Date"
 	vector<Post> getVector(string inString); //Getter for vectors
 	void printMetrologicAutumn(); //Prints wich day metrologic autumn starts
@@ -32,13 +34,16 @@ private:
 	void sortOutMedium(); // Fills the vOutMediumPerDay vector with the medium of all "Ute" posts
 	void sortInMedium(); // Fills the vInMediumPerDay vectot with the medium of all "Inne" posts
 	void setTempDiff(); // Sets temp diff on Out and In medium vector post
-
+	//void sortTempDiffPerHour(); //Sort out
+	void vInTempDiffPerHour();
 	vector<Post> vPost;
 	vector<Post> vIn;
 	vector<Post> vInMediumPerDay;
 	vector<Post> vOut;
 	vector<Post> vOutMediumPerDay;
-
+	vector<Post> vInTempDiffPerHour;
+	vector<Post> vOutTempDiffPerHour;
+	vector<Post> vTempDiffPerHour;
 
 	
 

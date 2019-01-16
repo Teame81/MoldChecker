@@ -24,6 +24,7 @@ void Menu::mainMenu(PostDatabase &mDatabase)
 		cout << "2. Indoors menu.\n";
 		cout << "3. Date for meteorological autumn.\n";
 		cout << "4. Date for meteorological winter.\n";
+		cout << "5. Print biggest temperature difference.\n";
 		cout << "Q. Quit.\n";
 		
 		switch (menuInput())
@@ -51,6 +52,12 @@ void Menu::mainMenu(PostDatabase &mDatabase)
 			{
 				mDatabase.sortByDate();
 				mDatabase.printMetrologicWinter();
+
+			}
+			case '5':
+			{
+				mDatabase.sortByTempDiffHighToLow();
+				mDatabase.printTempDiffList();
 
 			}
 			break;
@@ -181,7 +188,7 @@ char Menu::menuInput()
 
 	char mInput{};
 	
-	while (mInput != '1' && mInput != '2' && mInput != '3' && mInput != '4' && mInput != 'Q')
+	while (mInput != '1' && mInput != '2' && mInput != '3' && mInput != '4' && mInput != '5' && mInput != 'Q')
 	{
 		cout << "\n>: ";
 		cin >> mInput;

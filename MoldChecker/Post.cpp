@@ -37,6 +37,11 @@ void Post::printMe()
 		<< " " << fTempDiff << "\n";
 }
 
+string Post::printMeNoLocation()
+{
+	return dDate.sPrintMe() + " " + to_string(fTemp) + " " + to_string(iMoist) + " " + to_string(iMoldRisk) + " " + to_string(fTempDiff);
+}
+
 string Post::sPrintMe()
 {
 	return dDate.sPrintMe() + " " + sLocation + " " + to_string(fTemp) + " " + to_string(iMoist)+ " " + to_string(iMoldRisk) + " " + to_string(fTempDiff);
