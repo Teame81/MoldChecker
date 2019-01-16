@@ -231,6 +231,11 @@ void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 				whereAt = tempMin + (tempMax - tempMin) / 2;
 				it = inVec.begin() + whereAt;
 			}
+			if (tempMin > tempMax)
+			{
+				cout << "Date out of bounds\n";
+				break;
+			}
 		}
 		it->printMe();
 		didFind = true;
@@ -407,7 +412,12 @@ void PostDatabase::printMetrologicWinter()
 	}
 }
 
-vector<Post> PostDatabase::getOutVector()
+vector<Post>& PostDatabase::getOutVector()
 {
 	return vOutMediumPerDay;
+}
+
+vector<Post>& PostDatabase::getInVector()
+{
+	return vInMediumPerDay;
 }

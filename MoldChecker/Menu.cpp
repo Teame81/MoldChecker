@@ -103,11 +103,11 @@ void Menu::outDoorMenu(PostDatabase & mDatabase)
 		{
 			mDatabase.sortByDate();
 			int iSearch{};
-			vector<Post>::iterator itCB = mDatabase.getOutVector().begin() + 1;
+			vector<Post>::iterator itCB = mDatabase.getOutVector().begin();
 			vector<Post>::iterator itCE = mDatabase.getOutVector().end() - 1;
 			cout << "Current range: " << itCB->iGetDate() <<" - " << itCE->iGetDate() <<"\nFormat ex(Y/M/D): 20160515\nEnter: ";
 			cin >> iSearch;
-			mDatabase.searchForDateInPostVector(mDatabase.getVector("vOutMediumPerDay"), iSearch);
+			mDatabase.searchForDateInPostVector(mDatabase.getOutVector(), iSearch);
 		}
 		break;
 		case 'Q':
@@ -156,7 +156,13 @@ void Menu::inDoorMenu(PostDatabase & mDatabase)
 		break;
 		case '4':
 		{
-			cout << "Search";
+			mDatabase.sortByDate();
+			int iSearch{};
+			vector<Post>::iterator itCB = mDatabase.getInVector().begin();
+			vector<Post>::iterator itCE = mDatabase.getInVector().end() - 1;
+			cout << "Current range: " << itCB->iGetDate() << " - " << itCE->iGetDate() << "\nFormat ex(Y/M/D): 20160515\nEnter: ";
+			cin >> iSearch;
+			mDatabase.searchForDateInPostVector(mDatabase.getInVector(), iSearch);
 		}
 		break;
 		case 'Q':

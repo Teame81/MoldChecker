@@ -25,8 +25,8 @@ public:
 	vector<Post> getVector(string inString); //Getter for vectors
 	void printMetrologicAutumn(); //Prints wich day metrologic autumn starts
 	void printMetrologicWinter();//Prints wich day metroligic autumn starts
-	vector<Post> getOutVector();
-
+	vector<Post>& getOutVector();
+	vector<Post>& getInVector();
 private:
 	void sortInAndOut(); // Sort out "Inne" / "Ute" into vIn vector and vOut vector
 	void sortOutMedium(); // Fills the vOutMediumPerDay vector with the medium of all "Ute" posts
@@ -38,6 +38,7 @@ private:
 	vector<Post> vInMediumPerDay;
 	vector<Post> vOut;
 	vector<Post> vOutMediumPerDay;
+
 
 	
 
