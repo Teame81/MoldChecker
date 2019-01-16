@@ -35,7 +35,7 @@ private:
 	void sortInMedium(); // Fills the vInMediumPerDay vectot with the medium of all "Inne" posts
 	void setTempDiff(); // Sets temp diff on Out and In medium vector post
 	//void sortTempDiffPerHour(); //Sort out
-	void vInTempDiffPerHour();
+	void sortInTempDiffPerHour();
 	vector<Post> vPost;
 	vector<Post> vIn;
 	vector<Post> vInMediumPerDay;

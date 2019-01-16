@@ -215,10 +215,11 @@ void PostDatabase::setTempDiff()
 
 }
 
-void PostDatabase::vInTempDiffPerHour()
+void PostDatabase::sortInTempDiffPerHour()
 {
-	cout << "Aik";
 }
+
+
 
 
 
