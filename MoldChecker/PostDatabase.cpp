@@ -17,6 +17,8 @@ void PostDatabase::loadEssentials()
 	this->sortOutMedium();
 	this->sortInMedium();
 	this->setTempDiff();
+	this->sortInTempDiffPerHour();
+	this->sortOutTempDiffPerHour();
 }
 
 void PostDatabase::addPost(Post inPost)
@@ -217,11 +219,85 @@ void PostDatabase::setTempDiff()
 
 void PostDatabase::sortInTempDiffPerHour()
 {
+	int iCounter{};
+	double tempTemperature{};
+	int tempMoist{};
+
+	for (auto it = vIn.begin(); it < vIn.end(); it++)
+	{
+		if (it < vIn.end() - 1)
+		{
+			if (((*it).sGetDate() == (it + 1)->sGetDate()) && (it->getHour() == (it + 1)->getHour()))
+			{
+				tempTemperature = tempTemperature + it->getTemp();
+				tempMoist = tempMoist + it->getMoist();
+				iCounter++;
+			}
+			else if (((*it).sGetDate() == (it + 1)->sGetDate()) && (it->getHour() != (it + 1)->getHour()))
+			{
+				if (iCounter == 0)
+					iCounter++;
+
+				Post tP(Date(it->sGetDateHour()), it->getLocation(), tempTemperature / (float)iCounter, tempMoist / iCounter);
+				vInTempDiffPerHour.push_back(tP);
+
+				tempTemperature = 0;
+				tempMoist = 0;
+				iCounter = 0;
+			}
+		}
+
+		if (it == vIn.end() - 1)  // Catching the last post
+		{
+			if (iCounter == 0)
+				iCounter++;
+
+			Post tP(Date(it->sGetDateHour()), it->getLocation(), tempTemperature / (float)iCounter, tempMoist / iCounter);
+			vInTempDiffPerHour.push_back(tP);
+		}
+	}
 }
 
+void PostDatabase::sortOutTempDiffPerHour()
+{
+	int iCounter{};
+	double tempTemperature{};
+	int tempMoist{};
 
+	for (auto it = vOut.begin(); it < vOut.end(); it++)
+	{
+		if (it < vOut.end() - 1)
+		{
+			if (((*it).sGetDate() == (it + 1)->sGetDate()) && (it->getHour() == (it + 1)->getHour()))
+			{
+				tempTemperature = tempTemperature + it->getTemp();
+				tempMoist = tempMoist + it->getMoist();
+				iCounter++;
+			}
+			else if (((*it).sGetDate() == (it + 1)->sGetDate()) && (it->getHour() != (it + 1)->getHour()))
+			{
+				if (iCounter == 0)
+					iCounter++;
 
+				Post tP(Date(it->sGetDateHour()), it->getLocation(), tempTemperature / (float)iCounter, tempMoist / iCounter);
+				vOutTempDiffPerHour.push_back(tP);
 
+				tempTemperature = 0;
+				tempMoist = 0;
+				iCounter = 0;
+			}
+		}
+
+		if (it == vOut.end() - 1)  // Catching the last post
+		{
+			if (iCounter == 0)
+				iCounter++;
+
+			Post tP(Date(it->sGetDateHour()), it->getLocation(), tempTemperature / (float)iCounter, tempMoist / iCounter);
+			vInTempDiffPerHour.push_back(tP);
+		}
+	}
+}
 
 void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 {
@@ -438,4 +514,14 @@ vector<Post>& PostDatabase::getOutVector()
 vector<Post>& PostDatabase::getInVector()
 {
 	return vInMediumPerDay;
+}
+
+void PostDatabase::tempPrintVec()
+{
+	int i = 1;
+	for (auto it = vOutTempDiffPerHour.begin(); it != vOutTempDiffPerHour.end(); i++, it++)
+	{
+		cout << i << ". ";
+		(*it).printMe();
+	}
 }

@@ -62,6 +62,11 @@ string Post::sGetDate()
 	return dDate.sYearMonthDay();
 }
 
+string Post::sGetDateHour()
+{
+	return dDate.sYearMonthDayHour();
+}
+
 int Post::iGetDate()
 {
 	return dDate.iGetFullDate();
@@ -101,6 +106,11 @@ float Post::getMoldRisk()const
 int Post::getMonth()
 {
 	return dDate.getMonth();
+}
+
+int Post::getHour()
+{
+	return dDate.getHour();
 }
 
 void Post::setTempDiff(float InDiff)

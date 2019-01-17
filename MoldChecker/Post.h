@@ -13,6 +13,7 @@ public:
 	float getTemp()const; // Gets Temperature of post
 	string getLocation(); // Gets Location of post
 	string sGetDate(); // Gets string Date of post
+	string sGetDateHour();// Gets date + hour
 	int iGetDate(); // Gets int value of date of a post
 	void addMoist(int inMoist); // adds Moist to a post
 	void addTemp(float inTemp); // adds Temperature to a post
@@ -21,6 +22,7 @@ public:
 	void setMoist(int inMoist); // Sets Moist on a post
 	float getMoldRisk()const; // Gets the mold risk
 	int getMonth(); // Returns month in Int
+	int getHour(); // Gets Hour
 	void setTempDiff(float inDiff); // Sets the temperature difference
 	float getTempDiff(); //Gets temperature difference
 
