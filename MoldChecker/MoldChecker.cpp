@@ -24,7 +24,7 @@ int main()
 	database.printMediumTemperature();
 	
 	database.loadEssentials();
-	database.tempPrintVec();
+	database.checkForDoorOpen();
 	menu.mainMenu(database);
 
 	//Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);

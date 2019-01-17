@@ -7,7 +7,7 @@ class PostDatabase
 public:
 	PostDatabase();
 	~PostDatabase();
-	void loadEssentials(); //Loads 
+	void loadEssentials(); //Loads, initiate
 	void addPost(Post inPost); // adds a post into the main vector(vPost)
 	void printAllData(); // Prints all data in main vector(vPost)
 	float fMediumTemperature(); // returns medium temperature of main vector(vPost)
@@ -15,7 +15,6 @@ public:
 	void printOutList(); //Prints all objects of the "out" vector(vOut)
 	void printInList(); // Prints all the objects of the "in" vector(vIn)
 	void printTempDiffList();//Prints all list without Location
-
 	void sortLowToHighMold(); // Send in a vector to sort it from low to high mold risk
 	void sortByDate();//Send in a vector sort it by date
 	void sortByTempDiffHighToLow();//Sorts vOut/In_Medium per days vectors in Temprature diffrent order
@@ -28,8 +27,7 @@ public:
 	void printMetrologicWinter();//Prints wich day metroligic autumn starts
 	vector<Post>& getOutVector(); //For getting adress to vector for menu method
 	vector<Post>& getInVector(); // For getting adress to vector for menu method
-	void checkForDoorOpen();
-	void tempPrintVec();
+	void checkForDoorOpen(); //Checks for open doors!
 
 private:
     void sortTempDiffPerHour(); // NOT DONT YET but will make a vector vTempDiffPerHOur

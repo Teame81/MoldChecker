@@ -495,7 +495,6 @@ void PostDatabase::sortByTempDiffHighToLow()
 	});
 }
 
-
 void PostDatabase::printMetrologicAutumn()
 {
 	int iCounter{}; 
@@ -585,12 +584,17 @@ vector<Post>& PostDatabase::getInVector()
 	return vInMediumPerDay;
 }
 
-void PostDatabase::tempPrintVec()
+void PostDatabase::checkForDoorOpen()
 {
-	int i = 1;
-	for (auto it = vInTempDiffPerHour.begin(); it != vInTempDiffPerHour.end(); i++, it++)
+	for (auto it = vInTempDiffPerHour.begin(); it < vInTempDiffPerHour.end(); it++)
 	{
-		cout << i << ". ";
-		(*it).printMe();
+		if (it < vInTempDiffPerHour.end()-1)
+		{
+			if (((it + 1)->getTempDiff() < it->getTempDiff() - 1.5) && (it+1)->getTemp() < it->getTemp())
+			{
+				cout << "Door was open: " << it->sPrintMe()<< "\n" ;
+			}
+
+		}
 	}
 }
