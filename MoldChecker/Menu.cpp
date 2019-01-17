@@ -140,6 +140,7 @@ void Menu::inDoorMenu(PostDatabase & mDatabase)
 		cout << "2. Driest to most moist day.\n";
 		cout << "3. Least risk to highest mold risk.\n";
 		cout << "4. Search for a specific day.\n";
+		cout << "5. Show which hour and day the door was open.\n";
 		cout << "Q. Back.\n";
 
 		switch (menuInput())
@@ -171,6 +172,11 @@ void Menu::inDoorMenu(PostDatabase & mDatabase)
 			cout << "Current range: " << itCB->iGetDate() << " - " << itCE->iGetDate() << "\nFormat ex(Y/M/D): 20160515\nEnter: ";
 			cin >> iSearch;
 			mDatabase.searchForDateInPostVector(mDatabase.getInVector(), iSearch);
+		}
+		break;
+		case '5':
+		{
+			mDatabase.checkForDoorOpen();
 		}
 		break;
 		case 'Q':

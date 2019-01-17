@@ -368,8 +368,6 @@ void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 
 Post* PostDatabase::searchForDateInvOutTempDiffPerHour(string inString)
 {
-	if (inString == "2017011013")
-		cout << "Time for bom";
 	int whereAt = int(vOutTempDiffPerHour.size() / 2);
 	int tempMax = int(vOutTempDiffPerHour.size());
 	int tempMin = 0;
@@ -396,15 +394,10 @@ Post* PostDatabase::searchForDateInvOutTempDiffPerHour(string inString)
 			}
 			if (tempMin > tempMax)
 			{
-				cout << "No match!\n";
 				return NULL;
 				break;
 			}
 		}
-		if (it->sGetDateHour() == "201612231")
-			cout << "Getting there!";
-
-		it->printMe();
 		return &(*it);
 		
 	
@@ -586,13 +579,15 @@ vector<Post>& PostDatabase::getInVector()
 
 void PostDatabase::checkForDoorOpen()
 {
+	int iCounter{1};
 	for (auto it = vInTempDiffPerHour.begin(); it < vInTempDiffPerHour.end(); it++)
 	{
 		if (it < vInTempDiffPerHour.end()-1)
 		{
 			if (((it + 1)->getTempDiff() < it->getTempDiff() - 1.5) && (it+1)->getTemp() < it->getTemp())
 			{
-				cout << "Door was open: " << it->sPrintMe()<< "\n" ;
+				cout << iCounter <<". Door was open at: " << it->sPrintMe()<< "\n" ;
+				iCounter++;
 			}
 
 		}
