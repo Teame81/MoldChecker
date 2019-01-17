@@ -19,6 +19,7 @@ void PostDatabase::loadEssentials()
 	this->setTempDiff();
 	this->sortInTempDiffPerHour();
 	this->sortOutTempDiffPerHour();
+	this->sortTempDiffPerHour();
 }
 
 void PostDatabase::addPost(Post inPost)
@@ -217,6 +218,31 @@ void PostDatabase::setTempDiff()
 
 }
 
+void PostDatabase::sortTempDiffPerHour()
+{
+	float diff{};
+	vector<Post>::iterator itIn = vInTempDiffPerHour.begin();
+
+	Post * tempPost{&(*itIn)};
+	for (itIn; itIn < vInTempDiffPerHour.end()-1; itIn++ )
+	{
+		tempPost = searchForDateInvOutTempDiffPerHour(itIn->sGetDateHour());
+		if(tempPost != NULL)
+		{ 
+			if (itIn->sGetDateHour() == tempPost->sGetDateHour())
+			{
+				diff = itIn->getTemp() - tempPost->getTemp();
+			
+				if (diff < 0)
+					diff = (-diff);
+
+				itIn->setTempDiff(diff);
+			}
+		}
+	}
+
+}
+
 void PostDatabase::sortInTempDiffPerHour()
 {
 	int iCounter{};
@@ -340,6 +366,53 @@ void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 	}
 }
 
+Post* PostDatabase::searchForDateInvOutTempDiffPerHour(string inString)
+{
+	if (inString == "2017011013")
+		cout << "Time for bom";
+	int whereAt = int(vOutTempDiffPerHour.size() / 2);
+	int tempMax = int(vOutTempDiffPerHour.size());
+	int tempMin = 0;
+	vector<Post>::iterator it = vOutTempDiffPerHour.begin() + whereAt;
+	vector<Post>::iterator itCB = vOutTempDiffPerHour.begin();
+	vector<Post>::iterator itCE = vOutTempDiffPerHour.end() - 1;
+	
+	if (inString >= itCB->sGetDateHour() && inString <= itCE->sGetDateHour())
+	{
+		string tempStr = it->sGetDateHour();
+		while (inString != it->sGetDateHour())
+		{
+			if (inString < it->sGetDateHour())
+			{
+				tempMax = whereAt - 1;
+				whereAt = tempMin + (tempMax - tempMin) / 2;
+				it = vOutTempDiffPerHour.begin() + whereAt;
+			}
+			else
+			{
+				tempMin = whereAt + 1;
+				whereAt = tempMin + (tempMax - tempMin) / 2;
+				it = vOutTempDiffPerHour.begin() + whereAt;
+			}
+			if (tempMin > tempMax)
+			{
+				cout << "No match!\n";
+				return NULL;
+				break;
+			}
+		}
+		if (it->sGetDateHour() == "201612231")
+			cout << "Getting there!";
+
+		it->printMe();
+		return &(*it);
+		
+	
+	}
+	return NULL;
+	
+}
+
 vector<Post> PostDatabase::getVector(string inString)
 {
 	if(inString == "vPost")
@@ -420,8 +493,6 @@ void PostDatabase::sortByTempDiffHighToLow()
 	{
 		return a.getTempDiff() > b.getTempDiff();
 	});
-
-
 }
 
 
@@ -435,8 +506,6 @@ void PostDatabase::printMetrologicAutumn()
 		iCounterInternLoop++;
 		if (it->getMonth() >= 8 && it < (vOutMediumPerDay.end()-6))
 		{
-
-
 			for (auto it2 = it; it2 < (vOutMediumPerDay.begin() + (iCounterInternLoop + 4)); it2++)
 			{
 				if((it2->getTemp() > 0 && it2->getTemp() < 10.0f) && ((it2 + 1)->getTemp() > 0 && (it2 + 1)->getTemp() <= 10.f))
@@ -519,7 +588,7 @@ vector<Post>& PostDatabase::getInVector()
 void PostDatabase::tempPrintVec()
 {
 	int i = 1;
-	for (auto it = vOutTempDiffPerHour.begin(); it != vOutTempDiffPerHour.end(); i++, it++)
+	for (auto it = vInTempDiffPerHour.begin(); it != vInTempDiffPerHour.end(); i++, it++)
 	{
 		cout << i << ". ";
 		(*it).printMe();
