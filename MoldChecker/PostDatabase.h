@@ -29,8 +29,9 @@ public:
 	vector<Post>& getInVector(); // For getting adress to vector for menu method
 	void tempPrintVec();
 private:
-	void sortInTempDiffPerHour();
-	void sortOutTempDiffPerHour();
+//	void sortTempDiffPerHour(); // NOT DONT YET but will make a vector vTempDiffPerHOur
+	void sortInTempDiffPerHour(); //Sorting in average temp per hour
+	void sortOutTempDiffPerHour(); //Sorting in average temp per hour
 	void sortInAndOut(); // Sort out "Inne" / "Ute" into vIn vector and vOut vector
 	void sortOutMedium(); // Fills the vOutMediumPerDay vector with the medium of all "Ute" posts
 	void sortInMedium(); // Fills the vInMediumPerDay vectot with the medium of all "Inne" posts
@@ -41,11 +42,8 @@ private:
 	vector<Post> vInMediumPerDay;
 	vector<Post> vOut;
 	vector<Post> vOutMediumPerDay;
-	
 	vector<Post> vInTempDiffPerHour;
-	
 	vector<Post> vOutTempDiffPerHour;
-	
 	vector<Post> vTempDiffPerHour;
 
 	
