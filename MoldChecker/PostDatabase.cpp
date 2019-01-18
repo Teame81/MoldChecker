@@ -59,7 +59,7 @@ void PostDatabase::printOutList()
 	int i = 1;
 	auto it = vOutMediumPerDay.begin();
 	auto itR = vOutMediumPerDay.rbegin();
-
+	cout << "\t Date\t      Temp\tMo Moldfactor TempDiff       Date\t   Temp      Mo Moldfactor TempDiff\n";
 	for (it, itR; it != vOutMediumPerDay.begin() + 5 || itR != vOutMediumPerDay.rbegin() + 5; i++, itR++, it++)
 	{
 		cout << i << ". High: " << it->sPrintMe() << "\t Low: " << itR->sPrintMe() << "\n";
@@ -71,8 +71,7 @@ void PostDatabase::printInList()
 	int i = 1;
 	auto it = vInMediumPerDay.begin();
 	auto itR = vInMediumPerDay.rbegin();
-
-	for (it, itR; it != vInMediumPerDay.begin() + 5 || itR != vInMediumPerDay.rbegin() + 5; i++, itR++, it++)
+	cout << "\t Date\t      Temp\tMo Moldfactor TempDiff         Date\t   Temp      Mo Moldfactor TempDiff\n";	for (it, itR; it != vInMediumPerDay.begin() + 5 || itR != vInMediumPerDay.rbegin() + 5; i++, itR++, it++)
 	{
 		cout << i << ". High: " << it->sPrintMe() << "\t Low: " << itR->sPrintMe() << "\n";
 	}
@@ -334,6 +333,7 @@ void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 	vector<Post>::iterator itCB = inVec.begin();
 	vector<Post>::iterator itCE = inVec.end()-1;
 	bool didFind{false};
+	bool outOf{ false };
 	if (inInt >= itCB->iGetDate() && inInt <= itCE->iGetDate())
 	{
 		int tempInt = it->iGetDate();
@@ -354,10 +354,13 @@ void PostDatabase::searchForDateInPostVector(vector<Post> inVec, int inInt)
 			if (tempMin > tempMax)
 			{
 				cout << "Date out of bounds\n";
+				outOf = true;
 				break;
 			}
 		}
-		it->printMe();
+		if(outOf == false)
+			it->printMe();
+		
 		didFind = true;
 	}
 	if (didFind == false)

@@ -16,27 +16,17 @@ Menu menu;
 
 int main()
 {
-
-	
 	readFileData("tempdata4.csv");
 	//readFileData("timesaver.csv");
 
 	database.printMediumTemperature();
 	
 	database.loadEssentials();
+
+	database.sortByDate();
 	menu.mainMenu(database);
 
-	//Post tPost = database.searchForDateInPostVector(database.getVector("vOutMediumPerDay"), 20160603);
-	//tPost.printMe();
-	//database.sortHotToCold(database.getVector("vOutMediumPerDay"));
-	//database.sortDryToMoist(database.getVector("vOutMediumPerDay"));
-	
-
-
 	cin.get();
-	
-	
-
 }
 
 void readFileData(const string fileName)
