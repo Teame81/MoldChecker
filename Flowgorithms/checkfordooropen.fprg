@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="timmi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2019-01-18 09:53:09 "/>
+        <attribute name="created" value="dGltbWk7REVTS1RPUC1URUFNRTsyMDE5LTAxLTE4OyIwODoxOTo0OCAiOzI2OTg="/>
+        <attribute name="edited" value="dGltbWk7REVTS1RPUC1URUFNRTsyMDE5LTAxLTE4OyIwOTo1MzowOSAiOzE7MjgwMg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="checkForDoorOpen()  method"/>
+            <for variable="MyVector.Start to MyVector.End" start="MyVector.Start to MyVector.End" end="" direction="inc" step="1">
+                <if expression="Om temperatur diff for n&#228;sta timma minskat med 1.5 Celsius och minskning beror p&#229; att innertemperaturen minskar">
+                    <then>
+                        <output expression="D&#246;rr &#246;ppnades dag/timma : XX XX" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

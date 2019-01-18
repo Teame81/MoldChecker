@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Flowgorithms">
+      <UniqueIdentifier>{083e6955-103d-4d63-bd7c-e4b576dc01e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -50,5 +53,18 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ReadMe.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Flowgorithms\checkfordooropen.fprg">
+      <Filter>Resource Files\Flowgorithms</Filter>
+    </None>
+    <None Include="..\Flowgorithms\searhfordate.fprg">
+      <Filter>Resource Files\Flowgorithms</Filter>
+    </None>
   </ItemGroup>
 </Project>

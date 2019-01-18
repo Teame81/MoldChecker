@@ -170,6 +170,13 @@
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="PostDatabase.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Flowgorithms\checkfordooropen.fprg" />
+    <None Include="..\Flowgorithms\searhfordate.fprg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

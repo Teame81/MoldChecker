@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="timmi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2019-01-18 01:39:51 "/>
+        <attribute name="created" value="dGltbWk7REVTS1RPUC1URUFNRTsyMDE5LTAxLTE4OyIwMToxODoxMSAiOzI2ODA="/>
+        <attribute name="edited" value="dGltbWk7REVTS1RPUC1URUFNRTsyMDE5LTAxLTE4OyIwMTozOTo1MSAiOzE7Mjc5NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="en vector med all v&#228;derdata" type="Integer" array="False" size=""/>
+            <declare name="s&#228;tt &quot;aktuella posten&quot; till mitten av vectorn vi kallar den &quot;WhereAt&quot;" type="Integer" array="False" size=""/>
+            <declare name="S&#228;tt en integer som vi kallar &quot;Max&quot; till sista positionen i vectorn" type="Integer" array="False" size=""/>
+            <declare name="S&#228;tt en integer vi kallar f&#246;r &quot;Min&quot; till f&#246;rsta positonen i vectrorn dvs 0" type="Integer" array="False" size=""/>
+            <declare name="En bool vi kan kalla f&#246;r &quot;Hittat&quot;" type="Integer" array="False" size=""/>
+            <while expression="Medans &quot;s&#246;k datum&quot; inte &#228;r lika med Nuvarandes postens data">
+                <if expression="Om &quot;s&#246;k datum&quot; &#228;r mindre &#228;n Aktuella postens data">
+                    <then>
+                        <assign variable="Max" expression="whereAt - 1"/>
+                        <assign variable="whereAt" expression="Min+(Max-min) / 2"/>
+                    </then>
+                    <else>
+                        <assign variable="min" expression="whereAt+1"/>
+                        <assign variable="whereAt" expression="Min + (Max - Min) /2"/>
+                    </else>
+                </if>
+                <if expression="Hittar ve en post p&#229; Aktuella datumet?">
+                    <then>
+                        <assign variable="Hittat" expression="True"/>
+                    </then>
+                    <else>
+                        <assign variable="Hittat" expression="False"/>
+                    </else>
+                </if>
+            </while>
+            <if expression="Om Hittat">
+                <then>
+                    <output expression="Skriver ut den aktuella Posten" newline="True"/>
+                </then>
+                <else>
+                    <output expression="Skriver att inget datum finns p&#229; den aktuella posten" newline="True"/>
+                </else>
+            </if>
+            <output expression="Returnera posten p&#229; det aktuella datumet" newline="True"/>
+            <output expression="returnera aktuella &quot;Posten&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
